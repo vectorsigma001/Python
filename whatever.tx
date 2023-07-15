@@ -1,0 +1,45 @@
+class Values:
+    button1 = "1"
+    button2 = "2"
+    button3 = "3"
+    button4 = "4"
+    str0 = ""
+    str1=0
+
+    def call(self):
+        choose = int(input("Enter a number between 1 and 2: "))
+        if choose == 1:
+            choose1 = int(input("Choose a button between 1 to 4: "))
+            if choose1 == 1:
+                Values.str0 += self.button1
+            elif choose1 == 2:
+                Values.str0 += self.button2
+            elif choose1 == 3:
+                Values.str0 += self.button3
+            elif choose1 == 4:
+                Values.str0 += self.button4
+
+            choose2 = input("Do you still want to add a number? Choose 'yes' or 'no' or add subtract divide multiply: ")
+            if choose2 == "yes":
+                self.call()
+            elif choose2 == "no":
+                print(Values.str0)
+                return
+            elif choose2 == "add"
+                
+        elif choose == 2:
+            print(Values.str0)
+            return
+    
+    def add(self):
+        a=5
+    def subtract(self):
+        a=3
+    def divide(self):
+        a=3
+    def multiply(self):
+        d=3
+
+
+object = Values()
+object.call()

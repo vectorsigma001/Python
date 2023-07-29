@@ -1,6 +1,7 @@
-from re import I
+import re
 import requests
 from bs4 import BeautifulSoup
+
 def navigable():
   url="https://webscraper.io/test-sites/e-commerce/allinone/computers"
   r=requests.get(url)
@@ -62,4 +63,50 @@ def findingAllDescription2():
   for descriptiononly in description:
     print(descriptiononly.text)
 #print(findingAllDescription2())
-#
+#printing all the data with h4 , a , p tag
+def usingmanytags():
+  url="https://webscraper.io/test-sites/e-commerce/allinone/computers/tablets"  
+  r=requests.get(url)
+  soup=BeautifulSoup(r.text,"html.parser")
+  data=soup.find_all(["h4","a","p"])
+  return data
+  for i in data:
+    return i
+  for k in data:
+    return k.text
+#print(usingmanytags())
+
+#SHOWING THE DATA USING REGEX  
+#NOTE IMPORT REGEX import re
+def usingRegex0():
+  url="https://webscraper.io/test-sites/e-commerce/allinone/computers/tablets"
+  r=requests.get(url)
+  soup=BeautifulSoup(r.text,"html.parser")
+  data=soup.find_all(string="Galaxy Tab")
+  return data
+print(usingRegex0())
+#USING REAL REGEX TO GBET THE ITEM WITH GALAXY
+def usingRegex1():
+  url="https://webscraper.io/test-sites/e-commerce/allinone/computers/tablets"
+  r=requests.get(url)
+  soup=BeautifulSoup(r.text,"html.parser")
+  data=soup.find_all(string=re.compile("Galaxy"))
+  return data
+#print(usingRegex1())
+#USING TEGBEX TO GET THE ITEM WITH KEY IDEA
+def usingRegex2():
+  url="https://webscraper.io/test-sites/e-commerce/allinone/computers/tablets"
+  r=requests.get(url)
+  soup=BeautifulSoup(r.text,"html.parser")
+  data=soup.find_all(string=re.compile("Idea"))
+  return data
+print(usingRegex2())
+#EXTRACTING DATA FROM THE HOME PAGE
+def usingRegex3():
+  url="https://www.wscubetech.com/"
+  r=requests.get(url)
+  soup=BeautifulSoup(r.text,"html.parser")
+  data=soup.find_all(string=re.compile("WsCube"))
+  return data
+  return len(data)
+print(usingRegex3())

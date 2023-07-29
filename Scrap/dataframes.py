@@ -34,3 +34,5 @@ def dataframes():
   #creating a dataframe with pandas
   df=pd.DataFrame({"Product Name":product_name,"Prices":prices_list,"Description":desc_list,"Number of reviews":reviews_list})
   df.to_csv("hello.csv")
+
+#check hello.csv files to check all the datas 

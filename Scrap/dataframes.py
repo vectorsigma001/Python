@@ -5,7 +5,7 @@ import pandas as pd
 def dataframes():
   url="https://webscraper.io/test-sites/e-commerce/allinone/computers/tablets"
   r=requests.get(url)
-  soup=BeautifulSoup(r.text,"lxml")
+  soup=BeautifulSoup(r.text,"html.parser")
   #putting productname in a list
   names=soup.find_all("a",class_="title")
   product_name=[]
@@ -33,6 +33,6 @@ def dataframes():
 
   #creating a dataframe with pandas
   df=pd.DataFrame({"Product Name":product_name,"Prices":prices_list,"Description":desc_list,"Number of reviews":reviews_list})
-  df.to_csv("hello.csv")
-
+  df.to_csv('hello.csv', index=False)
+print(dataframes())
 #check hello.csv files to check all the datas 

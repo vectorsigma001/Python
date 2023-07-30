@@ -47,22 +47,17 @@ def fourth():
   for hello in rows[1:]:
     dank=hello.text
     check.append(dank)
- #return check
+  #return check
   check1=[]
   for newli in check:
-    newli2=newli.replace("\n","  ")
-    check1.append(newli2)
+    newli2=newli.replace("\n",",")
+    newli3=newli2.replace(",,",",")
+    newli4=newli3.lstrip(",")
+    check1.append(newli4)
   for item in check1:
-        print(item)
-  '''
-  for i in rows[1:]:
-    data=i.find_all("td")
-    row=[tr.text for tr in data]
-    return row
-  ''' 
- # df=pd.DataFrame()
+    print(item)
+
   df = pd.DataFrame(check1, columns=['Data'])
-    
-    # Save DataFrame to csv
+  
   df.to_csv('data.csv', index=False)
 print(fourth())

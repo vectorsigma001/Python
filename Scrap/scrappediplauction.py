@@ -27,7 +27,8 @@ for i in range(0,len(fundremainlist),3):
 newfundremainlist=[fundremainlist[i] for i in indices]
 newfundremainlist1=[]
 storageforfundremain=[]
-for newfundremainlist1 in newfundremainlist:
+for newfundremainlist2 in newfundremainlist:
+  newfundremainlist1=newfundremainlist2.replace("₹","Rs.")
   storageforfundremain.append(newfundremainlist1)
 #GENERATING OVERSEAS PLAYERS
 overseaslist=[]

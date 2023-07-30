@@ -61,3 +61,13 @@ def fourth():
   
   df.to_csv('data.csv', index=False)
 print(fourth())
+
+
+
+
+ #for i in rows[1:]:
+ #   data=i.find_all("td")
+ #   row=[tr.text for tr in data]
+ #   return row
+#  ''' 
+ # df=pd.DataFrame()

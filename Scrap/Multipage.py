@@ -1,4 +1,4 @@
-# EXTRACTING HREF FROM THE CLASS
+# EXTRACTING HREF FROM MULTUPLE PAGES
 def scrapingMobilePhones():
   url="https://www.flipkart.com/search?q=mobiles%20under%2050000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
   r=requests.get(url)

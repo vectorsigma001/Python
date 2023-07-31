@@ -31,51 +31,63 @@ def scrapingMobilePhones():
 
 scrapingMobilePhones()
 
-#SCRAPING FLIPKART SIGNLE PAGE 
+#SCRAPING FLIPKART MILTIPAGE WHEN PAGE HAVE THNE SAME PATTERN IN THE URL LIKE NUMBERS AND THE NUMBERS IN THE COMING URL CHANGES WITH IN SOME SEQUENCE 
 class Multiweb:
-  url="https://www.flipkart.com/search?q=mobiles+under+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&as-pos=1&as-type=HISTORY&page=1"
-  names=[]
-  prices=[]
-  descriptions=[]
-  reviews=[]
-  def check(self):   
-    r=requests.get(self.url)
-    self.soup=BeautifulSoup(r.text,"html.parser")
-    
+
+  def __init__(self):
+    self.names = []
+    self.prices = []
+    self.descriptions = []
+    self.reviews = []
+
+  def check(self, url):
+    r = requests.get(url)
+    self.soup = BeautifulSoup(r.text, "html.parser")
+
   def name(self):
-    name1=self.soup.find_all("div",class_="_4rR01T")
+    name1 = self.soup.find_all("div", class_="_4rR01T")
     for namecheck in name1:
-      namecheck1=namecheck.text
+      namecheck1 = namecheck.text
       self.names.append(namecheck1)
-      
+
   def price(self):
-    price1=self.soup.find_all("div",class_="_30jeq3 _1_WHN1")
+    price1 = self.soup.find_all("div", class_="_30jeq3 _1_WHN1")
     for pricecheck in price1:
-      pricecheck1=pricecheck.text
-      pricecheck2=pricecheck1.replace("₹","Rs.")
-      self.prices.append(pricecheck2)
-      
+      if(len(self.prices)<len(self.names)):
+        pricecheck1 = pricecheck.text
+        pricecheck2 = pricecheck1.replace("₹", "Rs.")
+        self.prices.append(pricecheck2)
+
   def description(self):
-    description1=self.soup.find_all("ul",class_="_1xgFaf")
+    description1 = self.soup.find_all("ul", class_="_1xgFaf")
     for descriptioncheck in description1:
-      descriptioncheck1=descriptioncheck.text
-      self.descriptions.append(descriptioncheck1)
-    
+      if len(self.descriptions) < len(self.names):
+        descriptioncheck1 = descriptioncheck.text
+        self.descriptions.append(descriptioncheck1)
+
   def review(self):
-    review1=self.soup.find_all("div",class_="_3LWZlK")
+    review1 = self.soup.find_all("div", class_="_3LWZlK")
     for reviewcheck in review1:
-      if len(self.reviews)<24:
-        reviewcheck1=reviewcheck.text
-        self.reviews.append(reviewcheck1)     
-    
+      if len(self.reviews) < len(self.names):
+        reviewcheck1 = reviewcheck.text
+        self.reviews.append(reviewcheck1)
+
   def dataframe(self):
-    df=pd.DataFrame({"Name":self.names,"Price":self.prices,"Description":self.descriptions,"Reviews":self.reviews})
-    df.to_csv("MobileUnder5k.csv",index=False)
-     
-object=Multiweb()
-object.check()
-object.name()
-object.price()
-object.description()
-object.review()
+    df = pd.DataFrame({
+        "Name": self.names,
+        "Price": self.prices,
+        "Description": self.descriptions,
+        "Reviews": self.reviews
+    })
+    df.to_csv("MobileUnder5k.csv", index=False)
+
+
+object = Multiweb()
+for i in range(1, 20):  # Change the range accordingly
+  url = f"https://www.flipkart.com/search?q=mobiles+under+50000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&as-pos=1&as-type=HISTORY&page={i}"
+  object.check(url)
+  object.name()
+  object.price()
+  object.description()
+  object.review()
 object.dataframe()

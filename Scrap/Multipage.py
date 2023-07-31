@@ -52,14 +52,15 @@ class Multiweb:
     price1=self.soup.find_all("div",class_="_30jeq3 _1_WHN1")
     for pricecheck in price1:
       pricecheck1=pricecheck.text
-      self.prices.append(pricecheck1)
+      pricecheck2=pricecheck1.replace("₹","Rs.")
+      self.prices.append(pricecheck2)
       
   def description(self):
     description1=self.soup.find_all("ul",class_="_1xgFaf")
     for descriptioncheck in description1:
       descriptioncheck1=descriptioncheck.text
       self.descriptions.append(descriptioncheck1)
-
+    
   def review(self):
     review1=self.soup.find_all("div",class_="_3LWZlK")
     for reviewcheck in review1:

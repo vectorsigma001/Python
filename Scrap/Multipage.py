@@ -59,13 +59,13 @@ class Multiweb:
     for descriptioncheck in description1:
       descriptioncheck1=descriptioncheck.text
       self.descriptions.append(descriptioncheck1)
-     
+
   def review(self):
-    review1=self.soup.find_all("div",class_="fMghEO")
+    review1=self.soup.find_all("div",class_="_3LWZlK")
     for reviewcheck in review1:
-      reviewcheck1=reviewcheck.text
-      self.reviews.append(reviewcheck1)
-    
+      if len(self.reviews)<24:
+        reviewcheck1=reviewcheck.text
+        self.reviews.append(reviewcheck1)     
     
   def dataframe(self):
     df=pd.DataFrame({"Name":self.names,"Price":self.prices,"Description":self.descriptions,"Reviews":self.reviews})

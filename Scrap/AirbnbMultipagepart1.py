@@ -19,7 +19,7 @@ class Airbnb:
   def price(self):
     price1 = self.soup.find_all("span", class_="a8jt5op dir dir-ltr")
     for pricecheck in price1[2:]: #skipping first two element from price
-      if(len(self.prices)<len(self.names)):
+      if(len(self.prices)<len(self.names)): #used to avoid indexing error if sometimes there are other element which uses the same class
         pricecheck1 = pricecheck.text
         pricecheck2 = pricecheck1.replace("$", "$.")
         self.prices.append(pricecheck2)
@@ -27,14 +27,14 @@ class Airbnb:
   def description(self):
     description1 = self.soup.find_all("span", class_="dir dir-ltr")
     for descriptioncheck in description1[2:]: #skipping first two element from description
-      if len(self.descriptions) < len(self.names):
+      if len(self.descriptions) < len(self.names): #used to avoid indexing error if sometimes there are other element which uses the same class
         descriptioncheck1 = descriptioncheck.text
         self.descriptions.append(descriptioncheck1)
 
   def review(self):
     review1 = self.soup.find_all("span", class_="r1dxllyb dir dir-ltr")
     for reviewcheck in review1[2:]: #skipping first two element from reviews 
-      if len(self.reviews) < len(self.names):
+      if len(self.reviews) < len(self.names): #used to avoid indexing error if sometimes there are other element which uses the same class
         reviewcheck1 = reviewcheck.text
         self.reviews.append(reviewcheck1)
 

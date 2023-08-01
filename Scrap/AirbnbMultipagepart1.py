@@ -1,4 +1,3 @@
-
 class Airbnb:
 
   def __init__(self):
@@ -13,13 +12,13 @@ class Airbnb:
 
   def name(self):
     name1 = self.soup.find_all("div", class_="t1jojoys dir dir-ltr")
-    for namecheck in name1:
+    for namecheck in name1[2:]:   #skipping first two element from name
       namecheck1 = namecheck.text
       self.names.append(namecheck1)
 
   def price(self):
     price1 = self.soup.find_all("span", class_="a8jt5op dir dir-ltr")
-    for pricecheck in price1:
+    for pricecheck in price1[2:]: #skipping first two element from price
       if(len(self.prices)<len(self.names)):
         pricecheck1 = pricecheck.text
         pricecheck2 = pricecheck1.replace("$", "$.")
@@ -27,14 +26,14 @@ class Airbnb:
 
   def description(self):
     description1 = self.soup.find_all("span", class_="dir dir-ltr")
-    for descriptioncheck in description1:
+    for descriptioncheck in description1[2:]: #skipping first two element from description
       if len(self.descriptions) < len(self.names):
         descriptioncheck1 = descriptioncheck.text
         self.descriptions.append(descriptioncheck1)
 
   def review(self):
     review1 = self.soup.find_all("span", class_="r1dxllyb dir dir-ltr")
-    for reviewcheck in review1:
+    for reviewcheck in review1[2:]: #skipping first two element from reviews 
       if len(self.reviews) < len(self.names):
         reviewcheck1 = reviewcheck.text
         self.reviews.append(reviewcheck1)
@@ -46,7 +45,7 @@ class Airbnb:
         "Description": self.descriptions,
         "Reviews": self.reviews
     })
-    df.to_csv("Airbnbpart1.csv", index=False)
+    df.to_csv("Airbnb.csv", index=False)
 
 object = Airbnb()
 for i in range(1, 20):  # Change the range accordingly

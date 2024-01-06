@@ -25,6 +25,6 @@ else:
 """
 INSTRUCTION
 once your hit the run button
-In the terminal type python3 yourfilename.py anish --result anyword
+In the terminal type python3 yourfilename.py anish --result anynumber
 After this do as it shows in the instruction
 """

@@ -35,6 +35,7 @@ Magic Method
 OperatorOverloading
   - basicoperatoroverloading
   - overloading arithmetic operators
+  - overloading comparison operators
 
 
 ```

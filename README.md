@@ -45,7 +45,6 @@ Regex
   - findall method
   - sub method
   - split method
-  - 
 
 
 ```

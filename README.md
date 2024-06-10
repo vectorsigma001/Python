@@ -37,5 +37,15 @@ OperatorOverloading
   - overloading arithmetic operators
   - overloading comparison operators
 
+Regex
+  - search method
+  - example, matching digits
+  - example, email validation
+  - example, phone number validation
+  - findall method
+  - sub method
+  - split method
+  - 
+
 
 ```

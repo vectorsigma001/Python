@@ -14,6 +14,7 @@ class Vector:
         self.y = y
 
     # __repr__ for an official string representation of the object
+    # typecase a vector into string, in java you use toString() in python you use __repr__
     def __repr__(self):
         return f"Vector({self.x}, {self.y})"
 

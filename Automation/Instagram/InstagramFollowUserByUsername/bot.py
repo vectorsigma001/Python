@@ -4,6 +4,7 @@ import glob
 
 from tqdm.std import tqdm
 
+# follow_delay = change the time
 bot = Bot(max_follows_per_day=150, follow_delay=60, filter_previously_followed=True, filter_verified_accounts=True, filter_private_users=True, filter_business_accounts=True)
 
 password_file = open("password.txt", "r")
